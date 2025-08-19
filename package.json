@@ -26,9 +26,9 @@
   "devDependencies": {
     "archiver": "^7.0.1",
     "conventional-changelog-cli": "^5.0.0",
-    "fantasticon": "^2.0.0",
-    "globby": "^14.0.2",
+    "fantasticon": "^3.0.0",
+    "globby": "^14.1.0",
     "rimraf": "^6.0.1",
-    "svgo": "^3.3.2"
+    "svgo": "^4.0.0"
   }
 }
