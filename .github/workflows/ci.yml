@@ -1,0 +1,27 @@
+name: CI
+on:
+  push:
+permissions:
+  contents: write
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+      - run: npm ci
+      - run: npm run build
+      - name: Update CHANGELOG
+        run: npm run changelog
+      - name: Commit CHANGELOG if changed
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "chore(changelog): update"
+          file_pattern: CHANGELOG.md
+      - uses: actions/upload-artifact@v4
+        with:
+          name: dist
+          path: dist/

@@ -1,0 +1,34 @@
+{
+  "name": "icongen",
+  "version": "0.1.0",
+  "private": true,
+  "license": "UNLICENSED",
+  "description": "Private icon font library generated from SVGs with Fantasticon.",
+  "scripts": {
+    "clean": "rimraf dist",
+    "svgo": "svgo -f src/icons -o src/icons --config=svgo.config.js",
+    "update:codepoints": "node scripts/update-codepoints.cjs",
+    "fantasticon": "fantasticon --config=fantasticonrc.js",
+    "postbuild": "node scripts/postbuild.cjs",
+    "build": "npm run clean && npm run svgo && npm run update:codepoints && npm run fantasticon && npm run postbuild",
+    "zip": "node scripts/make-zip.cjs",
+    "changelog": "conventional-changelog -p conventionalcommits -i CHANGELOG.md -s",
+    "release": "npm run build && npm run zip"
+  },
+  "config": {
+    "iconFontName": "icongen",
+    "iconCssPrefix": "icg",
+    "fontsUrl": "./"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "devDependencies": {
+    "archiver": "^7.0.1",
+    "conventional-changelog-cli": "^5.0.0",
+    "fantasticon": "^2.0.0",
+    "globby": "^14.0.2",
+    "rimraf": "^6.0.1",
+    "svgo": "^3.3.2"
+  }
+}
